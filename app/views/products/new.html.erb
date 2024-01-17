@@ -1,0 +1,9 @@
+<%= form_tag ({ action: :create }) do %>
+  <%= label_tag :name, '商品名' %>
+  <%= text_field_tag :name %>
+  <%= label_tag :price, '価格' %>
+  <%= text_field_tag :price %>
+  <%= submit_tag '新規登録' %>
+<% end %>
+
+<p><%= link_to '戻る', products_path %></p>

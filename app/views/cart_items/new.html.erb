@@ -1,0 +1,19 @@
+<!-- app/views/cart_items/new.html.erb -->
+<h1>カートに商品を追加するとこ。</h1>
+<p><%= @products.name %></p>
+
+<p>商品価格：<%= @products.price %></p>
+
+<p>商品のID：<%= params[:product_id] %></p>
+
+<p>カートのID：<%= @cart_id.id %></p>
+
+<%= form_tag (cart_items_path), method: :post, data: { turbo: false } do %>
+  <%= label_tag :qty, '数量' %>
+  <%= select_tag :qty, options_for_select(1..9) %>
+  <%= hidden_field_tag :product_id, @product_id %>
+  <%= hidden_field_tag :cart_id, @cart_id.id %>
+  <%= submit_tag 'カートに追加' %>
+<% end %></br>
+
+<%= link_to '戻る', products_path %>

@@ -1,0 +1,27 @@
+<h1>カートの中身</h1>
+
+<% @sum = 0 %> 
+
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>価格</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+  <% @cart_items.each do |item| %>
+    <% product = Product.find_by(id: item.product_id)  %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= item.qty %></td>
+      <td><%= subtotal = product.price * item.qty %></td>
+      <% @sum += subtotal %>
+      <td><%= link_to 'カートから削除', cart_item_path(item), data: { turbo_method: :delete } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>合計金額:<%= @sum %>円</p>
+
+<%= link_to '商品一覧に戻る', products_path %>
